@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'ecomzapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_58F2D9D8F2964B4AB6848F3FC2D45DC4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C997BF0192F448298F6F9F00949A0A04 }}
           package: .

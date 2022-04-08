@@ -69,7 +69,9 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
-  const quantity = useSelector(state=>state.cart.quantity)
+  const quantity = useSelector((state) => state.cart.quantity);
+  const user = useSelector((state) => state.user.currentUser);
+
   return (
     <Container>
       <Wrapper>
@@ -84,14 +86,29 @@ const Navbar = () => {
           <Logo>LAMA.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          {!user ? (
+            <Link to="/register">
+              <MenuItem>Register</MenuItem>
+            </Link>
+          ) : (
+            ""
+          )}
+          {!user ? (
+            <Link to="/login">
+              <MenuItem>Login</MenuItem>
+            </Link>
+          ) : (
+            <Link onClick={localStorage.clear() && window.location.href()}>
+              <MenuItem>Log out</MenuItem>
+            </Link>
+          )}
+
           <Link to="/cart">
-          <MenuItem>
-            <Badge badgeContent={quantity} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
-          </MenuItem>
+            <MenuItem>
+              <Badge badgeContent={quantity} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </MenuItem>
           </Link>
         </Right>
       </Wrapper>
